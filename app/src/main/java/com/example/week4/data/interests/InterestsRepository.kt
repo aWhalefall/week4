@@ -1,5 +1,6 @@
 package com.example.week4.data.interests
 
+import com.example.week4.data.Response
 import kotlinx.coroutines.flow.Flow
 
 
@@ -13,17 +14,17 @@ interface InterestsRepository {
     /**
      * Get relevant topics to the user.
      */
-    suspend fun getTopics(): Result<List<InterestSection>>
+    suspend fun getTopics(): Response<List<InterestSection>>
 
     /**
      * Get list of people.
      */
-    suspend fun getPeople(): Result<List<String>>
+    suspend fun getPeople(): Response<List<String>>
 
     /**
      * Get list of publications.
      */
-    suspend fun getPublications(): Result<List<String>>
+    suspend fun getPublications(): Response<List<String>>
 
     /**
      * Toggle between selected and unselected

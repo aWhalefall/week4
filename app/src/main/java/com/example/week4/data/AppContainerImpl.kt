@@ -2,6 +2,8 @@ package com.example.week4.data
 
 import android.content.Context
 import com.example.week4.data.interests.InterestsRepository
+import com.example.week4.data.interests.impl.FakeInterestsRepository
+import com.example.week4.data.interests.impl.FakePostsRepository
 import com.example.week4.data.posts.PostsRepository
 
 /**
@@ -18,10 +20,11 @@ interface AppContainer {
 class AppContainerImpl(private val applicationContext: Context) : AppContainer {
 
     override val postsRepository: PostsRepository by lazy {
+        FakePostsRepository()
     }
 
     override val interestsRepository: InterestsRepository by lazy {
-
+        FakeInterestsRepository()
     }
 
 
