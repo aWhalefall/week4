@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.example.jetnews.data.posts.impl
+package com.example.week4.data.interests.impl
 
+import com.example.jetnews.R
 import com.example.week4.model.Markup
 import com.example.week4.model.MarkupType
 import com.example.week4.model.Metadata
@@ -24,7 +25,6 @@ import com.example.week4.model.ParagraphType
 import com.example.week4.model.Post
 import com.example.week4.model.PostAuthor
 import com.example.week4.model.Publication
-import com.example.week4.R
 import com.example.week4.model.PostsFeed
 
 /**

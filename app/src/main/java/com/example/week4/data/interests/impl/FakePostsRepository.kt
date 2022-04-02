@@ -1,6 +1,5 @@
 package com.example.week4.data.interests.impl
 
-import com.example.jetnews.data.posts.impl.posts
 import com.example.week4.data.Response
 import com.example.week4.model.Post
 import com.example.week4.data.posts.PostsRepository
