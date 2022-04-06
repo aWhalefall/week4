@@ -84,7 +84,7 @@ class HomeViewModel(private val postsRepository: PostsRepository) : ViewModel() 
         }
     }
 
-    private fun refreshPosts() {
+     fun refreshPosts() {
         viewModelState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             val result = postsRepository.getPostsFeed()
@@ -109,8 +109,31 @@ class HomeViewModel(private val postsRepository: PostsRepository) : ViewModel() 
             postsRepository.toggleFavorite(postId = postId)
         }
     }
+
     //选择给定的文章以查看有关它的更多信息
-//   fun selectArticle
+    fun selectArticle(postId: String) {
+        // Treat selecting a detail as simply interacting with it
+        interactedWithArticleDetails(postId)
+    }
+
+    fun errorShow(errorId: Long) {
+        viewModelState.update { currentUiState ->
+            val errorMessage = currentUiState.errorMessages.filterNot { it.id == errorId }
+            currentUiState.copy(errorMessages = errorMessage)
+        }
+    }
+
+     fun interactedWithArticleDetails(postId: String) {
+        viewModelState.update {
+            it.copy(selectedPostId = postId, isArticleOpen = true)
+        }
+    }
+
+    fun interactedWithFeed() {
+        viewModelState.update {
+            it.copy(isArticleOpen = false)
+        }
+    }
 
     companion object {
         fun provideFactory(postsRepository: PostsRepository): ViewModelProvider.Factory =

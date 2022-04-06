@@ -7,26 +7,28 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.week4.BaseApplication
 import com.example.week4.data.AppContainer
 import com.example.week4.ui.components.AppNavRail
 import com.example.week4.ui.theme.Week4Theme
 import com.example.week4.utils.WindowSize
-import com.google.accompanist.insets.ProvideWindowInsets
-import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.insets.statusBarsPadding
+import com.google.accompanist.insets.*
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.launch
 
 @Preview(showSystemUi = true)
 @Composable
 fun AppStateBar() {
-    JetnewsApp(appContainer = null, windowSize = null)
+    val baseApp = BaseApplication().container
+    JetnewsApp(appContainer = baseApp, windowSize = null)
 }
 
 @Composable
-fun JetnewsApp(appContainer: AppContainer?, windowSize: WindowSize?) {
+fun JetnewsApp(appContainer: AppContainer, windowSize: WindowSize?) {
     Week4Theme() {
         ProvideWindowInsets {
             val systemUiController = rememberSystemUiController()
@@ -80,7 +82,15 @@ fun JetnewsApp(appContainer: AppContainer?, windowSize: WindowSize?) {
                             navigateToInterests = { navigationActions.navigateToInterests }
                         )
                     }
-                    JetnewsNavGraph(appContainer = appContainer)
+                    JetnewsNavGraph(
+                        appContainer = appContainer,
+                        isExpandedScreen = isExpandedScreen,
+                        navController = navContainer, openDrawer = {
+                            coroutineScope.launch {
+                                sizeAwareDrawerState.open()
+                            }
+                        }
+                    )
 
                 }
 
@@ -101,3 +111,9 @@ fun rememberSizeAwareDrawerState(isExpandedScreen: Boolean): DrawerState {
     }
 
 }
+
+@Composable
+fun rememberContentPaddingForScreen(additionalTop: Dp = 0.dp) = rememberInsetsPaddingValues(
+    insets = LocalWindowInsets.current.systemBars,
+    applyTop = false, applyEnd = false, applyStart = false, additionalTop = additionalTop
+)
