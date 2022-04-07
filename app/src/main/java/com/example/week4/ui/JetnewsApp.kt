@@ -20,13 +20,6 @@ import com.google.accompanist.insets.*
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.launch
 
-@Preview(showSystemUi = true)
-@Composable
-fun AppStateBar() {
-    val baseApp = BaseApplication().container
-    JetnewsApp(appContainer = baseApp, windowSize = null)
-}
-
 @Composable
 fun JetnewsApp(appContainer: AppContainer, windowSize: WindowSize?) {
     Week4Theme() {
@@ -67,7 +60,6 @@ fun JetnewsApp(appContainer: AppContainer, windowSize: WindowSize?) {
                         })
                 }, gesturesEnabled = !isExpandedScreen
             ) {
-
                 Row(
                     Modifier
                         .fillMaxSize()

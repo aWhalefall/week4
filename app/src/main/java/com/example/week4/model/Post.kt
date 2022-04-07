@@ -41,6 +41,9 @@ data class PostAuthor(
     val url: String? = null
 )
 
+/**
+ * 出版物
+ */
 data class Publication(
     val name: String,
     val logoUrl: String

@@ -17,6 +17,7 @@ import kotlinx.coroutines.sync.withLock
  * 兴趣数据层的接口
  */
 class FakeInterestsRepository : InterestsRepository {
+
     private val topics by lazy {
         listOf(
             InterestSection("Android", listOf("Jetpack Compose", "Kotlin", "Jetpack")),
@@ -60,6 +61,7 @@ class FakeInterestsRepository : InterestsRepository {
     private val selectedPeople = MutableStateFlow(setOf<String>())
     private val selectedPublications = MutableStateFlow(setOf<String>())
 
+    //tag 互斥体加锁相关
     private val mutex = Mutex()
 
     override suspend fun getTopics(): Response<List<InterestSection>> {

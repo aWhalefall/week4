@@ -14,8 +14,7 @@ import com.example.week4.ui.home.HomeScreen
 import com.example.week4.ui.home.JetNewAppTopBar
 import com.example.week4.ui.theme.Week4Theme
 import com.example.week4.utils.rememberWindowSizeClass
-import com.google.accompanist.systemuicontroller.SystemUiController
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
+
 
 class MainActivity : ComponentActivity() {
 
@@ -30,20 +29,6 @@ class MainActivity : ComponentActivity() {
             Week4Theme {
               JetnewsApp(appContainer = appContainer, windowSize = windowSizeClass)
             }
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    Week4Theme {
-        Scaffold(
-            topBar = {
-                JetNewAppTopBar()
-            }
-        ) { paddingValues ->
-            HomeScreen(modifier = Modifier.padding(paddingValues))
         }
     }
 }

@@ -8,8 +8,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.week4.data.AppContainer
+import com.example.week4.data.interests.InterestsRepository
 import com.example.week4.ui.home.HomeRoute
 import com.example.week4.ui.home.HomeViewModel
+import com.example.week4.ui.interests.InterestsRoute
+import com.example.week4.ui.interests.InterestsViewModel
 
 /**
  * author：yangweichao@reworldgame.com
@@ -37,6 +40,16 @@ fun JetnewsNavGraph(
             )
             HomeRoute(
                 homeViewModel = homeViewModel,
+                isExpandedScreen = isExpandedScreen,
+                openDrawer = openDrawer
+            )
+        }
+        composable(JetnewsDestinations.INTERESTS_ROUTE) {
+            val interestsViewModel: InterestsViewModel = viewModel(
+                factory = InterestsViewModel.provideFactory(appContainer.interestsRepository)
+            )
+            InterestsRoute(
+                interestsViewModel = interestsViewModel,
                 isExpandedScreen = isExpandedScreen,
                 openDrawer = openDrawer
             )

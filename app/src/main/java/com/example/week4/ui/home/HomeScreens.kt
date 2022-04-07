@@ -246,7 +246,7 @@ fun HomeScreenWithList(
     openDrawer: () -> Unit,
     homeListLazyListState: LazyListState,
     scaffoldState: ScaffoldState,
-    modifier: Modifier,
+    modifier: Modifier =Modifier,
     hasPostsContent: @Composable (uiState: HomeUiState.HasPosts, modifier: Modifier) -> Unit
 ) {
     Scaffold(

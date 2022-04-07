@@ -10,6 +10,6 @@ sealed class Response<out R> {
     data class Error(val exception: Exception) : Response<Nothing>()
 }
 
-fun <T> Result<T>.successOr(fallback: T): T {
+fun <T> Response<T>.successOr(fallback: T): T {
     return ((this as? Response.Success<T>)?.data ?: fallback)
 }
