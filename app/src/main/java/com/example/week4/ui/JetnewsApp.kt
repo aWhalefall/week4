@@ -46,11 +46,10 @@ fun JetnewsApp(appContainer: AppContainer, windowSize: WindowSize?) {
             val sizeAwareDrawerState = rememberSizeAwareDrawerState(isExpandedScreen)
 
             ModalDrawer(
-                drawerState = sizeAwareDrawerState,
                 drawerContent = {
                     AppDrawer(currentRoute,
-                        navigateToHome = { navigationActions.navigateToHome },
-                        navigateToInterests = { navigationActions.navigateToInterests },
+                        navigateToHome = navigationActions.navigateToHome,
+                        navigateToInterests = navigationActions.navigateToInterests,
                         modifier = Modifier
                             .statusBarsPadding()
                             .navigationBarsPadding(), closeDrawer = {
@@ -58,7 +57,9 @@ fun JetnewsApp(appContainer: AppContainer, windowSize: WindowSize?) {
                                 sizeAwareDrawerState.close()
                             }
                         })
-                }, gesturesEnabled = !isExpandedScreen
+                },
+                drawerState = sizeAwareDrawerState,
+                gesturesEnabled = !isExpandedScreen,
             ) {
                 Row(
                     Modifier
@@ -70,14 +71,15 @@ fun JetnewsApp(appContainer: AppContainer, windowSize: WindowSize?) {
                     if (isExpandedScreen) {
                         AppNavRail(
                             currentRoute = currentRoute,
-                            navigateToHome = { navigationActions.navigateToHome },
-                            navigateToInterests = { navigationActions.navigateToInterests }
+                            navigateToHome = navigationActions.navigateToHome,
+                            navigateToInterests = navigationActions.navigateToInterests
                         )
                     }
                     JetnewsNavGraph(
                         appContainer = appContainer,
                         isExpandedScreen = isExpandedScreen,
-                        navController = navContainer, openDrawer = {
+                        navController = navContainer,
+                        openDrawer = {
                             coroutineScope.launch {
                                 sizeAwareDrawerState.open()
                             }
